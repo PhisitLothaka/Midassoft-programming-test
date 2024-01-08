@@ -1,29 +1,43 @@
-function getQuestionPart(arr: string[]): string[] {
+function findStrDuplicate(arr: string[]): string[] {
   let varArr: string[] = [];
 
   let result: string = "";
+
   let longStr: string;
   let shortStr: string;
 
-  arr[0].length > arr[1].length
-    ? ((longStr = arr[0]), (shortStr = arr[2]))
-    : ((shortStr = arr[0]), (longStr = arr[2]));
+  for (let i = 0; i < arr.length - 1; i++) {
+    arr[0].length > arr[i + 1].length
+      ? ((longStr = arr[i]), (shortStr = arr[i + 1]))
+      : ((shortStr = arr[i]), (longStr = arr[i + 1]));
 
-  for (let i = 0; i < shortStr.length; i++) {
-    console.log("count ==>", i);
     for (let n = 0; n < longStr.length; n++) {
-      if (shortStr[i] === longStr[n]) {
-        console.log(i, shortStr[i], "==>", n, longStr[n]);
-        if (shortStr[i + 1] === longStr[n + 1]) {
-          console.log(i, shortStr[i], "-->", n, longStr[n]);
-        }
+      let findIdx: number = longStr.indexOf(shortStr[n]);
+      if (findIdx >= 0) {
+        result = result.concat(shortStr[n]);
       }
     }
+
+    varArr.push(result);
+    result = "";
   }
 
-  console.log("==>", varArr);
-  return arr;
+  return varArr;
 }
 
-getQuestionPart(["BATHROOM", "BATH SALTS", "BLOODBATH"]);
-// getQuestionPart(["BEFRIEND", "GIRLFRIEND", "FRIENDSHIP"]);
+function getQuestionPart(arr: string[]): string[] {
+  let result: string[] = [];
+  let newResult: string[] = [];
+  result = findStrDuplicate(arr);
+
+  console.log(result);
+  newResult = arr.map((word) => {
+    let reduce: string;
+    reduce = word.replace(result[0], "");
+    return reduce.trim();
+  });
+
+  return newResult;
+}
+let result = getQuestionPart(["BATHROOM", "BATH SALTS", "BLOODBATH"]);
+console.log(result);
