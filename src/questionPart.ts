@@ -30,7 +30,6 @@ function getQuestionPart(arr: string[]): string[] {
   let newResult: string[] = [];
   result = findStrDuplicate(arr);
 
-  console.log(result);
   newResult = arr.map((word) => {
     let reduce: string;
     reduce = word.replace(result[0], "");
@@ -39,5 +38,3 @@ function getQuestionPart(arr: string[]): string[] {
 
   return newResult;
 }
-let result = getQuestionPart(["BATHROOM", "BATH SALTS", "BLOODBATH"]);
-console.log(result);
