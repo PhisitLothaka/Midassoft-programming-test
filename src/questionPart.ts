@@ -1,38 +1,37 @@
-function findStrDuplicate(arr: string[]): string[] {
+function findStrDuplicate(arr: string[]): string {
   let varArr: string[] = [];
 
   let result: string = "";
-
   let longStr: string;
   let shortStr: string;
+  arr[0].length > arr[1].length
+    ? ((longStr = arr[0]), (shortStr = arr[1]))
+    : ((longStr = arr[1]), (shortStr = arr[0]));
 
-  for (let i = 0; i < arr.length - 1; i++) {
-    arr[0].length > arr[i + 1].length
-      ? ((longStr = arr[i]), (shortStr = arr[i + 1]))
-      : ((shortStr = arr[i]), (longStr = arr[i + 1]));
-
+  for (let i = 0; i < shortStr.length; i++) {
     for (let n = 0; n < longStr.length; n++) {
-      let findIdx: number = longStr.indexOf(shortStr[n]);
-      if (findIdx >= 0) {
-        result = result.concat(shortStr[n]);
+      if (shortStr[i] === longStr[n]) {
+        if (
+          shortStr[i + 1] === longStr[n + 1] ||
+          shortStr[i - 1] === longStr[n - 1]
+        ) {
+          result = result.concat(longStr[n]);
+        }
       }
     }
-
-    varArr.push(result);
-    result = "";
   }
 
-  return varArr;
+  return result;
 }
 
 function getQuestionPart(arr: string[]): string[] {
-  let result: string[] = [];
+  let result: string;
   let newResult: string[] = [];
   result = findStrDuplicate(arr);
 
   newResult = arr.map((word) => {
     let reduce: string;
-    reduce = word.replace(result[0], "");
+    reduce = word.replace(result, "");
     return reduce.trim();
   });
 
