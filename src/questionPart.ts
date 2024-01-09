@@ -1,6 +1,4 @@
 function findStrDuplicate(arr: string[]): string {
-  let varArr: string[] = [];
-
   let result: string = "";
   let longStr: string;
   let shortStr: string;
