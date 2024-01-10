@@ -35,3 +35,6 @@ function getQuestionPart(arr: string[]): string[] {
 
   return newResult;
 }
+
+getQuestionPart(["BATHROOM", "BATH SALTS", "BLOODBATH"]);
+getQuestionPart(["BEFRIEND", "GIRLFRIEND", "FRIENDSHIP"]);
