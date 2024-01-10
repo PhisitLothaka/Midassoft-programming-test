@@ -72,5 +72,4 @@ function quickestPath(board: Board): number[] {
   return patternNum;
 }
 
-let re = quickestPath(board1);
-console.log(re);
+quickestPath(board1);
