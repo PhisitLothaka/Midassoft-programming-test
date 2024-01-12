@@ -37,6 +37,8 @@ function minEnergy(
         });
         me.power.push(Math.min(...meToBus));
         me.where = me.shop[idx][0] - Math.min(...busToShop);
+        meToBus.splice(0);
+        busToShop.splice(0);
       }
       me.power.push(Math.abs(me.where - shop));
       me.where = me.shop[idx][0];
